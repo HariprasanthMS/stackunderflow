@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
+      reset_session
+      log_in @user
       flash[:success] = "Welcome to the anti-chaos club"
       redirect_to user_url(@user)
     else
@@ -17,6 +19,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    log_out
+    reset_session
+  end
+  
   private
 
     def user_params

@@ -53,10 +53,14 @@ p {
 }
 
 /* header */
+.navbar {
+  background: #001536;
+}
 
 #logo {
   float: left;
-  margin-right: 10px;
+  margin-left: 60px;
+  margin-right: 50px;
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
@@ -70,7 +74,21 @@ p {
   }
 }
 
+#logo-name {
+  margin-left: 60px;
+  margin-right: 50px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
 
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
 
 /* footer */
 
@@ -201,4 +219,18 @@ input {
       }
     }
   }
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
 }

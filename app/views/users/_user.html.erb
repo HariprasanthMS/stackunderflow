@@ -1,0 +1,15 @@
+<li class="list-group-item">
+  <div class="card">
+    <div class="card-header">
+      <%= gravatar_for user, size: 30 %>
+    </div>
+    <div class="card-body">
+      <%= user.name%>
+      <%= link_to "View", user_path(user), class: "btn btn-dark", type: "button"%>
+      <% if current_user.admin? && !current_user?(user) %>
+         <%= link_to "delete", user, method: :delete,
+                                      data: { confirm: "You sure?" }, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</li>

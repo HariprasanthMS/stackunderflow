@@ -109,6 +109,7 @@ class UserTest < ActiveSupport::TestCase
     # Self-posts for user with followers
     hari.microposts.each do |post_self|
       assert hari.feed.include?(post_self)
+      assert_equal hari.feed.distinct, hari.feed
     end
     # Self-posts for user with no followers
     archer.microposts.each do |post_self|

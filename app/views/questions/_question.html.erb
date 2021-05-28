@@ -1,0 +1,20 @@
+<div class="question">
+  <% user = question.user %>
+  <% if current_user?(user) %>
+    <%= link_to "You asked ", user_path(current_user) %>
+  <% else %>
+    <%= link_to "#{user.name} asked ", user_path(user) %>
+  <% end %>
+
+  <% question.topics.each do |topic| %>
+  <%# TODO: convert these badges to link to respective topic page %>
+    <span class="label label-success"><%= topic.name%></span>
+  <% end %>
+
+  <h3><%= question.content %></h3>
+
+  <span class="timestamp">
+    <%= time_ago_in_words(question.created_at) %> ago.
+  </span>
+
+</div>

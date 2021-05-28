@@ -1,0 +1,27 @@
+<li class="list-group-item">
+  <div class="card">
+    <div class="card-header">
+      <%= render partial: 'questions/question', locals: { question: question } %>
+    </div>
+    <div class="card-body">
+      <hr>
+      <% if question.answers.any? %>
+        <% question.answers.each do | answer | %>
+          <%= render partial: 'answers/answer', locals: { answer: answer } %>
+          <hr>
+        <% end %>
+      <% else %>
+        <%= "No answer available for this question" %>
+      <% end %>
+      <% if logged_in? %>
+        <%# byebug %>
+        <%= render partial: 'answers/answer_form', locals: { question: question, user: current_user, answer: answer }%>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <% if current_user?(question.user) %>
+        <%= link_to "delete this question", question, method: :delete, data: { confirm: "You sure?" } %>
+      <% end %>
+    </div>
+  </div>
+</li>

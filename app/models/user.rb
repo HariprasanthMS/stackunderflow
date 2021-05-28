@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase }
 
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :votes, dependent: :destroy
+
+  has_many :user_topic_relations, dependent: :destroy
+  has_many :topics, through: :user_topic_relations  
+
   attr_accessor :remember_token
 
   validates :name, presence: true, length: { maximum: 50 }

@@ -1,0 +1,10 @@
+<%= form_with(model: @answer, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%# byebug %>
+    <%= f.text_area :content, placeholder: "Post your answer..." %>
+    <%= f.hidden_field :question_id, value: question.id %>
+    <%= f.hidden_field :user_id, value: user.id %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

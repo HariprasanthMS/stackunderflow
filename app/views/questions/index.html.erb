@@ -1,0 +1,12 @@
+<% provide(:title, 'Questions') %>
+<h1>All Questions</h1>
+
+<%= will_paginate %>
+  
+<ul class="list-group">
+  <% @questions.each do |question| %>
+    <%= render partial: 'shared/item', locals: { question: question,  answer: @answer} %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

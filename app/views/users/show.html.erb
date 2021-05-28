@@ -8,4 +8,16 @@
       </h1>
     </section>
   </aside>
+  <div class="col-md-8">
+    <h1>Questions</h1>
+      <ul class="list-group items">
+        <% if @other_user_questions.any? %>
+          <% @other_user_questions.each do |question| %>
+            <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+          <% end %>
+        <% else %>
+          <h4><%= @user.name %> has no question posted </h4>
+        <% end %>
+      </ul>
+    </div>
 </div>

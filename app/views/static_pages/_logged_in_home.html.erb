@@ -1,0 +1,20 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="question_form">
+      <%# byebug %>
+      <%= render partial: 'questions/question_form', locals: { question: @question} %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3>Questions</h3>
+    <ul class="list-group">
+       <%# TODO: should include questions in the topics followed by user %>
+      <% @questions.each do |question| %>
+        <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+      <% end %>
+    </ul>
+  </div>
+</div>

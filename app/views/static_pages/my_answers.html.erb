@@ -3,15 +3,15 @@
 
   <div class="col-md-8">
 
-    <% if @questions.blank? %>
+    <% if @my_answered_questions.blank? %>
       <div class="empty-questions">
-        You currently dont have any suggestions.. Follow some topics to get make them appear in your feed
+        You currently haven't answered any quesiton.. 
       </div>
     <% else %>
       <div class="suggested-questions">
-        <h3>Suggested <%= "question".pluralize(@questions.count) %></h3>
+        <h3><%= "Question".pluralize(@my_answered_questions.count) %> you answered</h3>
         <ul class="list-group">
-          <% @questions.each do | question | %>
+          <% @my_answered_questions.each do | question | %>
             <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
           <% end %>
         </ul>

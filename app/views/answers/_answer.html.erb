@@ -1,10 +1,25 @@
 <div class="answer">
-  <%= link_to "#{answer.user.name} answered ", user_path(answer.user) %>
-  <h5><%= answer.content %></h5>
-  <span class="timestamp">
-    <%= time_ago_in_words(answer.created_at) %> ago.
-    <% if current_user?(answer.user)%>
-      <%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" } %>
+  
+  <div class="answer-header">
+    <% user = answer.user %>
+    <% if current_user?(user) %>
+      <%= link_to "You answered ", user_path(current_user) %>
+    <% else %>
+      <%= link_to "#{user.name} answered ", user_path(user) %>
     <% end %>
-  </span>
+  </div>
+
+  <div class="answer-rating">
+    <%= render partial: 'votes/vote', locals: { answer: answer } %>
+  </div>
+  <div class="answer-body">
+    <h5><%= answer.content %></h5>
+    <span class="timestamp">
+      <%= time_ago_in_words(answer.created_at) %> ago.
+      <% if current_user?(answer.user)%>
+        <%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" } %>
+      <% end %>
+    </span>
+  </div>
+
 </div>  

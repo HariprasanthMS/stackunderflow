@@ -3,6 +3,7 @@
 
 $gray-medium-light: #eaeaea;
 
+
 /* universal */
 
 body {
@@ -234,3 +235,12 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+.answer_button {
+  width: 30%
+}
+
+.topic_label { 
+  width: 10%
+}
+

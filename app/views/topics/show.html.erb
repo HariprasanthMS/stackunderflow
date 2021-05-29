@@ -1,0 +1,34 @@
+<% provide(:title, @topic.name) %>
+
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="topic_info">
+      <h1>
+        <%= @topic.name %>
+        <span class="badge bg-secondary">
+          <%= @topic.questions.length %>
+        </span>
+      </h1>
+
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </section>
+  </aside>
+
+  <div class="col-md-8">
+
+    <%= render 'follow_page_form' if logged_in? %>
+    <br />
+    <ul class="list-group">
+      <% @questions.each do |question| %>
+        <%= render partial: 'shared/item', locals: { question: question,  answer: @answer} %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
+
+<%#= will_paginate %>
+  
+
+<%#= will_paginate %>

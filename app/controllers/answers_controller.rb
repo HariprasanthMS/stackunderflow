@@ -6,10 +6,13 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.build(answer_params)
     if @answer.save
       flash[:success] = "Answer posted!"
-      redirect_to root_url
+      redirect_back(fallback_location: root_url)
     else
+      @question = @answer.question
       @questions = current_user.questions.paginate(page: params[:page])
-      render 'static_pages/home'
+      # render 'static_pages/home'
+      flash[:danger] = @answer.errors.messages[:content]
+      redirect_back(fallback_location: root_url)
     end
   end
 
@@ -22,7 +25,7 @@ class AnswersController < ApplicationController
   private
 
     def answer_params
-      params.require(:answer).permit(:content)
+      params.require(:answer).permit(:content, :question_id, :user_id)
     end
 
     # Confirms the correct user.

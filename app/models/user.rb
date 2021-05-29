@@ -53,4 +53,19 @@ class User < ApplicationRecord
   def session_token
     remember_digest || remember
   end
+
+  # Follows a topic.
+  def follow(topic)
+    topics << topic unless topics.include?(topic)
+  end
+
+  # Unfollows a topic.
+  def unfollow(topic)
+    topics.delete(topic)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(topic)
+    topics.include?(topic)
+  end
 end

@@ -7,8 +7,9 @@
   <% end %>
 
   <% question.topics.each do |topic| %>
-  <%# TODO: convert these badges to link to respective topic page %>
-    <span class="label label-success"><%= topic.name%></span>
+    <%= link_to topic_path(topic) do %>
+      <span class="label label-success"><%= topic.name%></span>
+    <% end %>
   <% end %>
 
   <h3><%= question.content %></h3>

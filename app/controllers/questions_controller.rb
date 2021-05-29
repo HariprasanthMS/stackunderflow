@@ -20,13 +20,16 @@ class QuestionsController < ApplicationController
         QuestionTopicRelation.create(topic_id: topic.id, question_id: @question.id)
       end
       flash[:success] = "Question posted!"
-      redirect_to root_url
+      redirect_back(fallback_location: root_url)
     else
+      @user_questions = current_user.questions.paginate(page: params[:page])
       @answer = current_user.answers.build
-      @question = @question
-      @questions = current_user.questions.paginate(page: params[:page])
       render 'static_pages/home'
     end
+  end
+
+  def show
+
   end
 
   def destroy

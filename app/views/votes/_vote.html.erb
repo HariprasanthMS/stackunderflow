@@ -1,0 +1,25 @@
+<%= form_with(model: answer.votes.build, local: true) do |f| %>
+  <div>
+    <%= hidden_field_tag :answer_id, answer.id %>
+    <% if logged_in? %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+    <% end %>
+    <%= hidden_field_tag :vote_type, "upvote" %>
+  </div>
+  <%= f.submit "upvote", class: "bi bi-arrow-up-circle" %>
+  <%= content_tag :span, pluralize(getUpvoteCount(answer), "upvote"), 
+      class: 'badge badge-light' %>
+<% end %>
+
+<%= form_with(model: answer.votes.build, local: true) do |f| %>
+  <div>
+    <%= hidden_field_tag :answer_id, answer.id %>
+    <% if logged_in? %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+    <% end %>
+    <%= hidden_field_tag :vote_type, "downvote" %>
+  </div>
+  <%= f.submit "downvote", class: "bi bi-arrow-down-circle" %>
+  <%= content_tag :span, pluralize(getDownvoteCount(answer), "downvote"), 
+      class: 'badge badge-light' %>
+<% end %>

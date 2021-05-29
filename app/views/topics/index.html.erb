@@ -1,0 +1,22 @@
+<% provide(:title, 'Topics') %>
+<h1>All Topics</h1>
+
+
+<% @topics.each do |topic| %>
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <a href="<%= topic_url(topic)%>" class="btn btn-primary topic_label">
+          <%= topic.name %>
+          <span class="badge bg-secondary">
+            <%= topic.questions.length %>
+          </span>
+        </a>
+        <small class="text-muted">
+          Updated <%= time_ago_in_words(topic.created_at) %> ago.
+        </small>
+      </div>
+      <br />
+    </div>
+  </div>
+<% end %>

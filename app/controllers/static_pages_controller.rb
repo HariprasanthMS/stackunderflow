@@ -23,7 +23,14 @@ class StaticPagesController < ApplicationController
     @my_questions = getMyQuestions
   end
 
-  def search  
+  def search
+    if params[:search].blank?  
+      redirect_to(root_path, alert: "Empty field!") and return  
+    else
+      @parameter = params[:search].downcase
+      @answer = Answer.new
+      @results = Question.where(Question.arel_table[:content].matches("%#{@parameter}%"))
+    end
   end
   
   def help

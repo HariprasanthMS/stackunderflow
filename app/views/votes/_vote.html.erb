@@ -1,25 +1,40 @@
 <%= form_with(model: answer.votes.build, local: true) do |f| %>
-  <div>
-    <%= hidden_field_tag :answer_id, answer.id %>
+  <%= hidden_field_tag :answer_id, answer.id%>
+  <%= hidden_field_tag :vote_type, "upvote" %>
+
+  <div class="vote">
+    <span style="vertical-align: top;"><%= getUpvoteCount(answer) %></span>
     <% if logged_in? %>
       <%= hidden_field_tag :user_id, current_user.id %>
+      <% vote = current_user.votes.find_by(answer_id: answer.id) %>
+      <% if vote.nil? || vote.vote_type != "upvote"%>
+        <%= image_submit_tag("caret-up.svg", height: 32, width: 32) %>
+      <% else %>
+        <img src="<%= image_path("caret-up-fill.svg") %>" alt="upvote fill" width="32" height="32">
+      <% end %>
+    <% else %>
+      <img src="<%= image_path("caret-up.svg") %>" alt="upvote fill" width="32" height="32">
     <% end %>
-    <%= hidden_field_tag :vote_type, "upvote" %>
+
   </div>
-  <%= f.submit "upvote", class: "bi bi-arrow-up-circle" %>
-  <%= content_tag :span, pluralize(getUpvoteCount(answer), "upvote"), 
-      class: 'badge badge-light' %>
 <% end %>
 
 <%= form_with(model: answer.votes.build, local: true) do |f| %>
-  <div>
-    <%= hidden_field_tag :answer_id, answer.id %>
+  <%= hidden_field_tag :answer_id, answer.id %>
+  <%= hidden_field_tag :vote_type, "downvote" %>
+  <div class="vote">
+    <span style="vertical-align: bottom;"><%= getDownvoteCount(answer) %></span>
+
     <% if logged_in? %>
       <%= hidden_field_tag :user_id, current_user.id %>
+      <% vote = current_user.votes.find_by(answer_id: answer.id) %>
+      <% if vote.nil? || vote.vote_type != "downvote"%>
+        <%= image_submit_tag("caret-down.svg", height: 32, width: 32) %>
+      <% else %>
+        <img src="<%= image_path("caret-down-fill.svg") %>" alt="downvote fill" width="32" height="32">
+      <% end %>
+    <% else %>
+      <img src="<%= image_path("caret-down.svg") %>" alt="downvote" width="32" height="32">
     <% end %>
-    <%= hidden_field_tag :vote_type, "downvote" %>
   </div>
-  <%= f.submit "downvote", class: "bi bi-arrow-down-circle" %>
-  <%= content_tag :span, pluralize(getDownvoteCount(answer), "downvote"), 
-      class: 'badge badge-light' %>
 <% end %>

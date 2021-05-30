@@ -9,10 +9,10 @@ class VotesController < ApplicationController
         flash[:success] = "Vote added!"
         redirect_back(fallback_location: root_url)
       else
-        @question = @answer.question
-        @questions = current_user.questions.paginate(page: params[:page])
+        # @question = @answer.question
+        # @questions = current_user.questions.paginate(page: params[:page])
         # render 'static_pages/home'
-        flash[:danger] = @answer.errors.messages[:content]
+        flash[:danger] = "vote not updated"#@vote.errors.messages[:content]
         redirect_back(fallback_location: root_url)
       end
     else

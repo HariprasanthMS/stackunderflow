@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+  <div class="col-10 empty-questions">
+    <% if @results.blank? %>
+      <div class="empty-questions">
+        You search doesn't match any quesiton... Try different keywords...
+      </div>
+    <% else %>
+      <div class="suggested-questions">
+        <h3>Your search <%= "result".pluralize(@results.count) %></h3>
+        <ul class="list-group">
+          <% @results.each do | question | %>
+            <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

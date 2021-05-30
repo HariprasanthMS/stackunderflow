@@ -1,12 +1,19 @@
-<footer class="footer">
-  <small>
-    A minimal stackoverflow by us
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <li><a href="https://news.google.com/topstories?hl=en-IN&gl=IN&ceid=IN:en">News</a></li>
-    </ul>
-  </nav>
+<!-- Footer -->
+<footer class="container page-footer font-small row justify-content-end">
+  <hr>
+  <div class="col-3">
+    <small>A minimal stackoverflow by us</small>
+  </div>
+  
+  <div class="col-6">
+    <a href="http://127.0.0.1:3000/"> www.stackoverflow.com</a>
+    © 2020 Copyright
+  </div>
+  <div class="col-3">
+    <div class="row justify-content-between">
+      <%= link_to "About",   about_path, class: "col-4"%>
+      <%= link_to "Contact", contact_path, class: "col-4" %>
+      <a href="https://news.google.com/topstories?hl=en-IN&gl=IN&ceid=IN:en", class="col-4">News</a>
+    </div>
+  </div>
 </footer>

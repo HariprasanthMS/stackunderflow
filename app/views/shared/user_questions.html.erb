@@ -1,14 +1,14 @@
 <div class="row justify-content-center">
   <div class="col-10">
-    <% if @my_answered_questions.blank? %>
-      <div class="empty-questions text-center">
-        You currently haven't answered any quesiton.. 
+    <% if questions.blank? %>
+      <div class="empty-questions">
+        <%= empty_text%>
       </div>
     <% else %>
       <div class="suggested-questions">
-        <h3><%= "Question".pluralize(@my_answered_questions.count) %> you answered</h3>
+        <h3><%= title %></h3>
         <ul class="list-group">
-          <% @my_answered_questions.each do | question | %>
+          <% questions.each do | question | %>
             <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
           <% end %>
         </ul>

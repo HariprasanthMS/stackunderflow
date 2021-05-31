@@ -8,10 +8,10 @@
   
   <div class="col-lg-4 col-sm-8">
     <%= form_tag(search_url, :method => "get") do %> 
-      <div class="input-group mb-3">
-        <%= search_field_tag :search, params[:search], placeholder: "", class: "form-control" %>
+      <div class="form-input input-group mb-3">
+        <%= search_field_tag :search, params[:search], placeholder: "Enter keywords", class: "form-control" %>
         <div class="input-group-append">
-          <%= button_tag "Search", :class => 'btn btn-outline-secondary',:name => nil%> 
+          <%= button_tag "Search", :class => 'btn btn-outline-warning',:name => nil%> 
         </div>
       </div>
     <% end %>
@@ -26,10 +26,27 @@
             <span class="sr-only">Home</span>
           <% end %>
         </li>
-
-        <li class="nav-item">
-          <%= link_to "Questions", questions_path, class: "nav-link" %>
-        </li>
+        
+        <% if logged_in? %>
+          <li class="dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Questions
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="<%= questions_path %>">All questions</a></li>
+                <li><a class="dropdown-item" href="<%= questions_user_path(current_user.id) %>">My questions</a></li>
+                <li><a class="dropdown-item" href="<%= answered_questions_user_path(@current_user.id) %>">My answers</a></li>
+                <li><a class="dropdown-item" href="<%= voted_questions_user_path(@current_user.id) %>">Voted answers</a></li>
+              </ul>
+            </li>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Questions", questions_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        
         <li class="nav-item">
           <%= link_to "Topics", topics_path, class: "nav-link" %>
         </li>
@@ -49,8 +66,6 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="<%= user_path(current_user) %>">Profile</a></li>
-                <li><a class="dropdown-item" href="<%= my_questions_path %>">My questions</a></li>
-                <li><a class="dropdown-item" href="<%= my_answers_path %>">My answers</a></li>
                 <li><a class="dropdown-item" href="<%= edit_user_path(current_user) %>">Settings</a></li>
                 <li>
                   <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>

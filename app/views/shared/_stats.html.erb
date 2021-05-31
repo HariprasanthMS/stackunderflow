@@ -1,0 +1,43 @@
+<aside>
+  <section class="user_info">
+    <%= render partial: 'shared/user_info', locals: {user: user }%>
+  </section>
+  
+  <% if params["controller"]==UsersController.controller_name && params["action"]=="show"%>
+    <section class="">
+      <div class="button mt-2 d-flex flex-row align-items-center">
+        <%= link_to "Home", root_path, class: "btn btn-sm btn-outline-warning w-100 bd-10" %>
+      </div>
+    </section>
+  <% end %>
+
+  <% if params["controller"]==StaticPagesController.controller_name && params["action"]=="home"%>
+    <section class="question_form">
+      <%= render partial: 'questions/question_form', locals: { question: question} %>
+    </section>
+  <% end %>
+
+  <section class="topics">
+    <% if user.topics.blank? %>
+      <% if current_user?(user) %>
+        <h5> You currently dont follow any topics </h5>
+      <% else %>
+        <h5> <%= user.name %> is currently not following any topics </h5>
+      <% end %>
+    <% else %>
+      <% if current_user?(user) %>
+        <h5> Topics you follow </h5>
+      <% else %>
+        <h5> Topics followed by <%= user.name %></h5>
+      <% end %>
+      <% user.topics.each do |topic| %>
+        <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark mx-1">
+          <%= topic.name %>
+          <span class="badge bg-secondary">
+            <%= topic.questions.length %>
+          </span>
+        </a>
+      <% end %>
+    <% end %>
+  </section>
+</aside>

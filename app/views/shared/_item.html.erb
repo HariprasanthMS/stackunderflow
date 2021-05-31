@@ -1,10 +1,8 @@
-<div class="card">
-  <div class="card-header">
-    <%= render partial: 'questions/question', locals: { question: question } %>
-  </div>
+<div class="list-item">
+  <%= render partial: 'questions/question', locals: { question: question } %>
 
   <% if question.answers.any? %>
-    <div class="card-body answer-list">
+    <div class="row answer-list">
       <% question.answers.each do | answer | %>
         <li>
           <%= render partial: 'answers/answer', locals: { answer: answer } %>
@@ -12,18 +10,13 @@
       <% end %>
     </div>
   <% else %>
-    <div class="empty">
+
+    <div class="row empty">
       <%= "No answer available for this question" %>
     </div>
+
   <% end %>
   <% if logged_in? %>
     <%= render partial: 'answers/answer_form', locals: { question: question, user: current_user, answer: answer }%>
-  <% end %>
-  
-
-  <% if current_user?(question.user) %>
-    <div class="card-footer">
-      <%= link_to "delete this question", question, method: :delete, data: { confirm: "You sure?" } %>
-    </div>
   <% end %>
 </div>

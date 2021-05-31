@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-    @topics = params[:question][:topic_names].split("\r\n")
+    @topics = params[:question][:topic_names].split(",")
     
     if @question.save
       @topics.each do |t|

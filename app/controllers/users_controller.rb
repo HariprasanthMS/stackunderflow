@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy]
+  before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy, :questions, :answered_questions, :voted_questions]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   
@@ -13,8 +13,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @question  = current_user.questions.build
     @questions = current_user.questions.paginate(page: params[:page])
     @other_user_questions = @user.questions.paginate(page: params[:page])
+    @profile_user = @user
     @answer = current_user.answers.build
   end
 
@@ -28,6 +30,33 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def questions
+    @user = User.find(params[:id])
+    @answer = current_user.answers.build
+    title = "#{@user.name} asked #{"question".pluralize(@user.questions.count)}"
+    @user_questions = get_user_questions
+    empty_text = "#{@user.name} haven't asked any questions"
+    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title }
+  end
+
+  def answered_questions
+    @user = User.find(params[:id])
+    @answer = current_user.answers.build
+    title = "#{@user.name} provided #{"answer".pluralize(@user.answers.count)}"
+    @user_questions = get_user_answered_questions
+    empty_text = "#{@user.name} haven't answered any questions"
+    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title }
+  end
+
+  def voted_questions
+    @user = User.find(params[:id])
+    @answer = current_user.answers.build
+    title = "#{@user.name} voted #{"answer".pluralize(@user.votes.count)}"
+    @user_questions = get_user_voted_questions
+    empty_text = "#{@user.name} haven't voted any answers"
+    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title }
   end
 
   def destroy
@@ -80,5 +109,36 @@ class UsersController < ApplicationController
     # Confirms an admin user.
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def get_user_voted_questions
+      voted_questions = User.find(params[:id]).votes.map do | vote |
+        vote.answer.question
+      end 
+      voted_questions.uniq
+    end
+  
+    def getFeed
+      questions = current_user.questions.map do | question |
+        question
+      end
+      current_user.topics.each do | topic |
+        topic.questions.each do | question |
+          questions << question
+        end
+      end
+      questions.uniq
+    end
+  
+    def get_user_answered_questions
+      answered_questions = User.find(params[:id]).answers.map do | answer |
+        answer.question
+      end
+    end
+  
+    def get_user_questions
+      my_questions = User.find(params[:id]).questions.map do | question |
+        question
+      end
     end
 end

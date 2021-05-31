@@ -1,31 +1,32 @@
 <div class="answer">
   <% user = answer.user %>
-  <small class="text-muted">
-    <% if current_user?(user) %>
-      <%= link_to "You answered ", user_path(current_user) %>
-    <% else %>
-      <%= link_to "#{user.name} answered ", user_path(user) %>
-    <% end %>
-  </small>
 
-  <div class="row">
+  <div class="row justify-content-between">
     <div class="answer-rating col-1 px-0">
       <%= render partial: 'votes/vote', locals: { answer: answer } %>
     </div>
 
-    <div class="answer-content col-11">
-      <%= answer.content %>
+    <div class="answer-content col-9">
+      <p>
+        <%= answer.content %>
+      </p>
+    </div>
+
+    <div class="col-2 d-flex flex-column justify-content-between answer-right-col">
+      <span class="timestamp answer-timestamp">
+        <%= time_ago_in_words(answer.created_at) %> ago.
+      </span>
+
+      <div class="col-10 d-flex flex-row-reverse">
+        <% if current_user?(answer.user) %>
+          <div class="delete_question">
+            <%= link_to answer, method: :delete, data: { confirm: "You sure?" } do %>
+              <%= image_tag("trash.svg", height: 20, width: 20) %>
+            <% end %>         
+          </div>
+        <% end %>
+        <%= link_to gravatar_for(user, size: 25), answer.user %>
+      </div>
     </div>
   </div>
-
-  <span class="timestamp answer-timestamp">
-    <%= time_ago_in_words(answer.created_at) %> ago.
-  </span>
-  
-  <div>
-    <% if current_user?(answer.user)%>
-      <%= link_to "delete", answer, method: :delete, data: { confirm: "You sure?" } %>
-    <% end %>
-  </div>
-
 </div>

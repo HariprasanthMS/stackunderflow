@@ -8,19 +8,24 @@ class StaticPagesController < ApplicationController
       @question  = current_user.questions.build
       @questions = getFeed
       @answer = current_user.answers.build
+      @profile_user = current_user
     end
   end
 
   def my_answers
-    @question  = current_user.questions.build
     @answer = current_user.answers.build
     @my_answered_questions = getAnsweredQuestions
   end
 
   def my_questions
-    @question  = current_user.questions.build
     @answer = current_user.answers.build
     @my_questions = getMyQuestions
+    render 'shared/user_questions', locals: { questions: @my_questions }
+  end
+
+  def my_voted_questions
+    @answer = current_user.answers.build
+    @my_voted_questions = getUserVotedQuestions
   end
 
   def search

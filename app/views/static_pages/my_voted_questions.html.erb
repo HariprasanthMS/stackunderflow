@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-8">
+
+    <% if @my_voted_questions.blank? %>
+      <div class="empty-questions">
+        You haven't voted any answers..
+      </div>
+    <% else %>
+      <div class="suggested-questions">
+        <h3><%= "Question".pluralize(@my_voted_questions.count) %> for which you voted the answer</h3>
+        <ul class="list-group">
+          <% @my_voted_questions.each do | question | %>
+            <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

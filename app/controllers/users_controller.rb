@@ -36,14 +36,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @answer = current_user.answers.build
     if current_user?(@user)
-      title = "Your"
+      title = "you"
       empty_text = "You"
     else
       title = @user.name + "'s"
       empty_text = @user.name
     end
 
-    title += " #{"question".pluralize(@user.questions.count)}"
+    title = " #{"Question".pluralize(@user.questions.count)} " + title + " asked"
     @user_questions = get_user_questions
     empty_text += " haven't asked any questions"
 
@@ -74,14 +74,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @answer = current_user.answers.build
     if current_user?(@user)
-      title = "Your"
+      title = "you"
       empty_text = "You"
     else
       title = @user.name
       empty_text = @user.name
     end
 
-    title += " voted #{"answer".pluralize(@user.votes.count)}"
+    title = "#{"Answer".pluralize(@user.votes.count)} voted " + title
     @user_questions = get_user_voted_questions
     empty_text += " haven't voted any answers"
     count = @user.votes.count

@@ -15,7 +15,9 @@
             <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
           <% end %>
         <% else %>
-          <h4><%= @user.name %> has no question posted </h4>
+          <div class="row empty">
+            <%= @user.name %> has no question posted
+          </div>
         <% end %>
       </ul>
     </div>

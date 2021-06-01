@@ -1,10 +1,9 @@
 <div class="user">
-  <%= will_paginate %>
-    <div class="row">
-        <div class="col-1">
+    <div class="row w-100">
+        <div class="col-2">
           <%= gravatar_for user, size: 30 %>
         </div>
-        <div class="col-9">
+        <div class="col-8">
           <h5><%= link_to user.name, user_path(user), class: "profile-link" %></h5>
         </div>
         <% if current_user.admin? && !current_user?(user) %>

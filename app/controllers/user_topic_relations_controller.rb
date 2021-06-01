@@ -5,7 +5,7 @@ class UserTopicRelationsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     current_user.follow(@topic)
     respond_to do |format|
-      format.html { redirect_to @topic }
+      format.html { redirect_back(fallback_location: root_url) }
       format.js
     end
   end
@@ -14,8 +14,8 @@ class UserTopicRelationsController < ApplicationController
     @topic = UserTopicRelation.find(params[:id]).topic
     current_user.unfollow(@topic)
     respond_to do |format|
-      format.html { redirect_to @topic }
+      format.html { redirect_back(fallback_location: root_url) }
       format.js
     end
-  end
+  end 
 end

@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # add_flash_types :info, :error, :warning
 
   # Returns the full title on a per-page basis.
   def full_title(page_title = '')

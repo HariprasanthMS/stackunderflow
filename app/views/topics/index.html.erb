@@ -4,35 +4,32 @@
   <aside class="col-md-4">
     <section class="info-section background-common">
       <h1>
-        All Topics
         <span class="badge bg-secondary">
           <%= @topics.count %>
         </span>
+      </h1>
+      <h1>
+        Total Topics
       </h1>
       <small class="text-muted"></small>
     </section>
   </aside>
 
-  <div class="col-md-8">
+  <div class="col-md-8 flex-column">
     <% if @topics.blank? %>
       <div class="empty-content">
         No topics available currently
       </div>
     <% else %>   
-      <div class="section list-item d-flex align-content-center flex-wrap justify-content-center">
+      <div class="section list-item card-group align-items-center">
         <% @topics.each do |topic| %>
-          <div class="topic-tag bd-10">
-            <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic">
+          <div class="topic-tag bd-10 text-center">
+            <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic w-50">
               <%= topic.name %>
               <span class="badge bg-secondary">
                 <%= topic.questions.length %>
               </span>
             </a>
-            
-            <small class="text-muted">
-              Updated <%= time_ago_in_words(topic.created_at) %> ago.
-            </small>
-
             <%= render partial: 'follow_page_form', locals: {topic: topic} if logged_in? %>
           </div>
         <% end %>

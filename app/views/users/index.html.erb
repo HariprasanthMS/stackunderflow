@@ -9,10 +9,12 @@
   <aside class="col-md-4">
     <section class="info-section background-common">
       <h1>
-        All Users
         <span class="badge bg-secondary">
           <%= @users.count %>
         </span>
+      </h1>
+      <h1>
+        Total <%= "User".pluralize(@users.count) %>
       </h1>
       <small class="text-muted"></small>
     </section>
@@ -24,13 +26,13 @@
         No users available currently
       </div>
     <% else %>   
+      <%= will_paginate %>
       <div class="section list-item">
           <% @users.each do |user| %>
-            <div class="topic-tag bd-10">
+            <div class="topic-tag bd-10 w-50">
               <%= render user %>
             </div>
           <% end %>
-        <%= will_paginate %>
       </div>
     <% end %>
   </div>

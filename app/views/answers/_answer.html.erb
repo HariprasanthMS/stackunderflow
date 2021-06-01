@@ -10,17 +10,16 @@
       <p>
         <%= answer.content %>
       </p>
-    </div>
-
-    <div class="col-2 d-flex flex-column justify-content-between answer-right-col">
-      <span class="timestamp answer-timestamp">
+      <span class="timestamp answer-timestamp timestamp-text">
         <%= time_ago_in_words(answer.created_at) %> ago.
       </span>
+    </div>
 
+    <div class="col-2 d-flex flex-column justify-content-end answer-right-col">
       <div class="col-10 d-flex flex-row-reverse answer-icons-section">
         <% if current_user?(answer.user) %>
           <div class="delete_question">
-            <%= link_to answer, method: :delete, data: { confirm: "You sure?" } do %>
+            <%= link_to answer, method: :delete do %>
               <%= image_tag("trash.svg", height: 20, width: 20) %>
             <% end %>         
           </div>

@@ -20,9 +20,11 @@
   <section class="topics">
     <% if user.topics.blank? %>
       <% if current_user?(user) %>
-        <h5> You currently dont follow any topics </h5>
+        <div class="text-center">You currently dont follow any topics</div>
+        <h5>  </h5>
       <% else %>
-        <h5> <%= user.name %> is currently not following any topics </h5>
+        <div class="text-center">
+          <%= user.name %> is currently not following any topics</div>
       <% end %>
     <% else %>
       <% if current_user?(user) %>

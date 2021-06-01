@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.build(question_params)
     @topics = params[:question][:topic_names].split(",")
-    
+    @topics = @topics[0..2]
     if @question.save
       @topics.each do |t|
         topic = Topic.find_by(name: t)
@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
         end
         QuestionTopicRelation.create(topic_id: topic.id, question_id: @question.id)
       end
-      flash[:success] = "Question posted!"
+      # flash[:success] = "Question posted!"
       redirect_back(fallback_location: root_url)
     else
       @user_questions = current_user.questions.paginate(page: params[:page])

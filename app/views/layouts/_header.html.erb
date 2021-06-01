@@ -35,8 +35,8 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="<%= questions_path %>">All questions</a></li>
-                <li><a class="dropdown-item" href="<%= questions_user_path(current_user.id) %>">My questions</a></li>
-                <li><a class="dropdown-item" href="<%= answered_questions_user_path(@current_user.id) %>">My answers</a></li>
+                <li><a class="dropdown-item" href="<%= questions_user_path(current_user.id) %>">Your questions</a></li>
+                <li><a class="dropdown-item" href="<%= answered_questions_user_path(@current_user.id) %>">Your answers</a></li>
                 <li><a class="dropdown-item" href="<%= voted_questions_user_path(@current_user.id) %>">Voted answers</a></li>
               </ul>
             </li>

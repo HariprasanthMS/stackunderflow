@@ -8,7 +8,7 @@
             <div class="ml-3 w-100">
               <div class="p-2 mt-2 bg-primary d-flex justify-content-between text-white stats bd-10">
                 <div class="d-flex flex-column col-4 stats text-center">
-                  <%= content_tag("span", class: "questions") do %>
+                  <%= content_tag("span", class: "box-label") do %>
                     <%= link_to "Questions", questions_user_path(user.id)%> 
                   <% end %>
                   <%= content_tag("span", class: "number") do %>
@@ -16,7 +16,7 @@
                   <% end %>
                 </div>
                 <div class="d-flex flex-column col-4  text-center"> 
-                  <%= content_tag("span", class: "answers") do %>
+                  <%= content_tag("span", class: "box-label") do %>
                     <%= link_to "Answers", answered_questions_user_path(user.id)%> 
                   <% end %>
                   <%= content_tag("span", class: "number") do %>
@@ -24,7 +24,7 @@
                   <% end %>
                 </div>
                 <div class="d-flex flex-column col-4  text-center">
-                  <%= content_tag("span", class: "votes") do %>
+                  <%= content_tag("span", class: "box-label") do %>
                     <%= link_to "Votes", voted_questions_user_path(user.id)%> 
                   <% end %>
                   <%= content_tag("span", class: "number") do %>

@@ -1,16 +1,16 @@
-<div class="user">
-    <div class="row w-100">
-        <div class="col-2">
-          <%= gravatar_for user, size: 30 %>
-        </div>
-        <div class="col-8">
-          <h5><%= link_to user.name, user_path(user), class: "profile-link" %></h5>
-        </div>
-        <% if current_user.admin? && !current_user?(user) %>
-          <div class="col-1">
-            <%= link_to "delete", user, method: :delete,
-                                          data: { confirm: "You sure?" }, class: "btn btn-outline-warning pull-right" %>
-          </div>
-        <% end %>
+<h4 class="mb-0 mt-0 text-center"><%= user.name %></h4>
+<div class="d-flex">
+    <div class="image mt-1">
+      <%= link_to gravatar_for(user, size: 40), user %>
     </div>
+    <% if current_user.admin? && !current_user?(user) %>
+      <div class="button mt-2 d-flex flex-row align-items-center">
+        <%= link_to "delete", user, method: :delete,
+                                      data: { confirm: "You sure?" }, class: "btn btn-sm btn-outline-warning w-100 bd-10" %>
+      </div>
+    <% else %>
+      <div class="button mt-2 d-flex flex-row align-items-end">
+        <%= link_to "View", user_url(user), class: "btn btn-sm btn-outline-warning w-100 bd-10" %>
+      </div>
+    <% end %>
 </div>

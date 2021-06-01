@@ -1,8 +1,3 @@
-<ul class="list-group">
-  <% @users.each do |user| %>
-  <% end %>
-</ul>
-
 <% provide(:title, 'All users') %>
 
 <div class="row">
@@ -20,19 +15,30 @@
     </section>
   </aside>
 
-  <div class="col-md-8">
+  <div class="col-md-8 flex-column">
     <% if @users.blank? %>
       <div class="empty-content">
         No users available currently
       </div>
     <% else %>   
       <%= will_paginate %>
-      <div class="section list-item">
-          <% @users.each do |user| %>
-            <div class="topic-tag bd-10 w-50">
-              <%= render user %>
-            </div>
-          <% end %>
+      <div class="section list-item card-group align-items-center">
+        <% @users.each do |user| %>
+          <div class="user-tag col-6 bd-10 text-center user">
+            <%= link_to gravatar_for(user, size: 40), user %>
+            <h5 class="mb-0 mt-0 text-center"><%= user.name %></h5>
+            <% if current_user.admin? && !current_user?(user) %>
+              <div class="button mt-2 d-flex flex-row align-items-center w-50">
+                <%= link_to "delete", user, method: :delete,
+                                              data: { confirm: "You sure?" }, class: "btn btn-sm btn-outline-warning w-100 bd-10" %>
+              </div>
+            <% else %>
+              <div class="button mt-2 d-flex flex-row align-items-end">
+                <%= link_to "View", user_url(user), class: "btn btn-sm btn-outline-warning w-50 bd-10" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

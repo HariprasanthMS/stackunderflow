@@ -81,7 +81,7 @@ class UsersController < ApplicationController
       empty_text = @user.name
     end
 
-    title = "#{"Answer".pluralize(@user.votes.count)} voted " + title
+    title = "#{"Answer".pluralize(@user.votes.count)} " + title + " voted "
     @user_questions = get_user_voted_questions
     empty_text += " haven't voted any answers"
     count = @user.votes.count

@@ -20,11 +20,11 @@
       <div class="empty-content">
         No topics available currently
       </div>
-    <% else %>   
+    <% else %>
       <div class="section list-item card-group align-items-center">
         <% @topics.each do |topic| %>
-          <div class="topic-tag bd-10 text-center">
-            <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic w-50">
+          <div class="topic-tag col -6 bd-10 text-center">
+            <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic">
               <%= topic.name %>
               <span class="badge bg-secondary">
                 <%= topic.questions.length %>

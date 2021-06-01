@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.paginate(page: params[:page])
+    @topics = Topic.all.uniq.paginate(page: params[:page])
     @answer = Answer.new
   end
 

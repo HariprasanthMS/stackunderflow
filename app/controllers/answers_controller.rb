@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     if @answer.save
-      flash[:success] = "Answer posted!"
+      # flash[:success] = "Answer posted!"
       redirect_back(fallback_location: root_url)
     else
       @question = @answer.question
@@ -18,7 +18,7 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    flash[:success] = "Answer deleted"
+    # flash[:success] = "Answer deleted"
     redirect_back(fallback_location: root_url)
   end
 

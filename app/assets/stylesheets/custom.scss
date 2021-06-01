@@ -12,8 +12,6 @@
   }
 
   .body {
-    width: 100%;
-    height: 100%;
     margin-bottom: 70px;
     color: #fff;
     background-color: #202125;
@@ -29,11 +27,11 @@
 
   .navbar {
     z-index: 5;
-    width: 91%;
     height: 80px;
+    width: 100%;
     background-color: #000;
     position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
+    top: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     font-size: large;
@@ -53,6 +51,10 @@
     .form-control {
       display: inline-block;
     }
+  }
+
+  .nav-container {
+    
   }
 
   .navbar-brand {
@@ -117,7 +119,8 @@
   /* main */
 
   .main {
-    margin-top: 100px;
+    // margin-top: 100px;
+    padding-top: 100px;
     padding-left: 10em;
     padding-right: 10em;
     background-color: #202125;
@@ -355,7 +358,6 @@
   }
 
   .empty {
-    background-color: rgb(27, 27, 27);
     margin-top: 16px;
     margin-left: 35px;
     border-radius: 10px;
@@ -431,8 +433,8 @@
       }
     }
 
-    .questions {
-      font-size: 16px;
+    .box-label {
+      font-size: 0.9em;
       color: #a1aab9
     }
 
@@ -500,6 +502,10 @@
 
   .main-topic {
     font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
     text-decoration: none;
     span {
       font-size: 14px;
@@ -507,7 +513,7 @@
   }
 
   .topic-tag {
-    padding: 10px;
+    padding: 10px 16px;
     background-color: #353535;
     margin: 5px;
     justify-content: space-between;
@@ -515,7 +521,7 @@
   }
 
   .follow-form {
-    margin: 16px;
+    margin-top: 10px;
   }
 
   /* user list */
@@ -525,6 +531,15 @@
     a {
       text-decoration: none;
       color: white;
+    }
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-decoration: none;
+    span {
+      font-size: 14px;
     }
   }
 
@@ -550,4 +565,12 @@
 
   .margin-0 {
     margin: 16px;
+  }
+
+  .user-tag {
+    padding: 10px 16px;
+    background-color: #353535;
+    margin: 5px;
+    justify-content: space-between;
+    width: 100%;
   }

@@ -35,28 +35,57 @@ class UsersController < ApplicationController
   def questions
     @user = User.find(params[:id])
     @answer = current_user.answers.build
-    title = "#{@user.name} asked #{"question".pluralize(@user.questions.count)}"
+    if current_user?(@user)
+      title = "Your"
+      empty_text = "You"
+    else
+      title = @user.name + "'s"
+      empty_text = @user.name
+    end
+
+    title += " #{"question".pluralize(@user.questions.count)}"
     @user_questions = get_user_questions
-    empty_text = "#{@user.name} haven't asked any questions"
-    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title }
+    empty_text += " haven't asked any questions"
+
+    count = @user.questions.count
+    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title, count: count }
   end
 
   def answered_questions
     @user = User.find(params[:id])
     @answer = current_user.answers.build
-    title = "#{@user.name} provided #{"answer".pluralize(@user.answers.count)}"
+    if current_user?(@user)
+      title = "you"
+      empty_text = "You"
+    else
+      title = @user.name
+      empty_text = @user.name
+    end
+
+    title = "#{"Answer".pluralize(@user.answers.count)} #{title} provided"
     @user_questions = get_user_answered_questions
-    empty_text = "#{@user.name} haven't answered any questions"
-    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title }
+    empty_text += " haven't answered any questions"
+
+    count = @user.answers.count
+    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title, count: count }
   end
 
   def voted_questions
     @user = User.find(params[:id])
     @answer = current_user.answers.build
-    title = "#{@user.name} voted #{"answer".pluralize(@user.votes.count)}"
+    if current_user?(@user)
+      title = "Your"
+      empty_text = "You"
+    else
+      title = @user.name
+      empty_text = @user.name
+    end
+
+    title += " voted #{"answer".pluralize(@user.votes.count)}"
     @user_questions = get_user_voted_questions
-    empty_text = "#{@user.name} haven't voted any answers"
-    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title }
+    empty_text += " haven't voted any answers"
+    count = @user.votes.count
+    render 'shared/user_questions', locals: { questions: @user_questions, empty_text: empty_text, title: title, count: count }
   end
 
   def destroy

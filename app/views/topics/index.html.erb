@@ -1,22 +1,42 @@
 <% provide(:title, 'Topics') %>
-<h1>All Topics</h1>
 
+<div class="row">
+  <aside class="col-md-4">
+    <section class="info-section background-common">
+      <h1>
+        All Topics
+        <span class="badge bg-secondary">
+          <%= @topics.count %>
+        </span>
+      </h1>
+      <small class="text-muted"></small>
+    </section>
+  </aside>
 
-<% @topics.each do |topic| %>
-  <div class="card-deck">
-    <div class="card">
-      <div class="card-body">
-        <a href="<%= topic_url(topic)%>" class="btn btn-primary topic_label">
-          <%= topic.name %>
-          <span class="badge bg-secondary">
-            <%= topic.questions.length %>
-          </span>
-        </a>
-        <small class="text-muted">
-          Updated <%= time_ago_in_words(topic.created_at) %> ago.
-        </small>
+  <div class="col-md-8">
+    <% if @topics.blank? %>
+      <div class="empty-content">
+        No topics available currently
       </div>
-      <br />
-    </div>
+    <% else %>   
+      <div class="section list-item d-flex align-content-center flex-wrap justify-content-center">
+        <% @topics.each do |topic| %>
+          <div class="topic-tag bd-10">
+            <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic">
+              <%= topic.name %>
+              <span class="badge bg-secondary">
+                <%= topic.questions.length %>
+              </span>
+            </a>
+            
+            <small class="text-muted">
+              Updated <%= time_ago_in_words(topic.created_at) %> ago.
+            </small>
+
+            <%= render partial: 'follow_page_form', locals: {topic: topic} if logged_in? %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

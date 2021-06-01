@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     if @vote.nil?
       @vote = current_user.votes.build(vote_params)
       if @vote.save
-        flash[:success] = "Vote added!"
+        # flash[:success] = "Vote added!"
         redirect_back(fallback_location: root_url)
       else
         # @question = @answer.question
@@ -23,7 +23,7 @@ class VotesController < ApplicationController
   def update
     @vote = current_user.votes.find_by(answer_id: params[:answer_id])
     if @vote.update(vote_params)
-      flash[:success] = "Vote updated"
+      # flash[:success] = "Vote updated"
       redirect_back(fallback_location: root_url)
     else
       flash[:danger] = @vote.errors.messages[:content]

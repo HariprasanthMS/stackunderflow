@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-inverse row justify-content-evenly">
-  <div class="container-fluid col-lg-3">
+  <div class="container-fluid col-lg-3 justify-content-around p-4">
+    <img src="<%= image_path("logo.jpg") %>" alt="" width="30" height="30" class="d-inline-block logo">
     <a class="navbar-brand logo" href="<%= root_path %>">
-      <img src="<%= image_path("logo.jpg") %>" alt="" width="30" height="30" class="d-inline-block logo">
-      STACKUNDERFLOW
+      stack<strong>underflow</strong>
     </a>
   </div>
   
@@ -50,9 +50,6 @@
         <li class="nav-item">
           <%= link_to "Topics", topics_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Help", help_path, class: "nav-link" %>
-        </li>
 
         <% if logged_in? %>
           <li class="nav-item">
@@ -67,6 +64,7 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="<%= user_path(current_user) %>">Profile</a></li>
                 <li><a class="dropdown-item" href="<%= edit_user_path(current_user) %>">Settings</a></li>
+                <li><%= link_to "Help", help_path, class: "dropdown-item"%></li>
                 <li>
                   <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
                 </li>

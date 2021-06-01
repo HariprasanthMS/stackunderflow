@@ -1,14 +1,17 @@
-<li class="list-group-item">
-  <div class="card">
-    <div class="card-header">
-      <%= gravatar_for user, size: 30 %>
+<div class="user">
+  <%= will_paginate %>
+    <div class="row">
+        <div class="col-1">
+          <%= gravatar_for user, size: 30 %>
+        </div>
+        <div class="col-9">
+          <h5><%= link_to user.name, user_path(user), class: "profile-link" %></h5>
+        </div>
+        <% if current_user.admin? && !current_user?(user) %>
+          <div class="col-1">
+            <%= link_to "delete", user, method: :delete,
+                                          data: { confirm: "You sure?" }, class: "btn btn-outline-warning pull-right" %>
+          </div>
+        <% end %>
     </div>
-    <div class="card-body">
-      <%= link_to user.name, user_path(user) %>
-      <% if current_user.admin? && !current_user?(user) %>
-         <%= link_to "delete", user, method: :delete,
-                                      data: { confirm: "You sure?" }, class: "btn btn-danger" %>
-      <% end %>
-    </div>
-  </div>
-</li>
+</div>

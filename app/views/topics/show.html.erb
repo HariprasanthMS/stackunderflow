@@ -3,7 +3,7 @@
 
 <div class="row">
   <aside class="col-md-4">
-    <section class="topic_info">
+    <section class="topic_info background-common">
       <h1>
         <%= @topic.name %>
         <span class="badge bg-secondary">
@@ -11,14 +11,15 @@
         </span>
       </h1>
 
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted">
+        Updated <%= time_ago_in_words(@topic.created_at) %> ago.
+      </small>
+      
+      <%= render partial: 'follow_page_form', locals: { topic: @topic } if logged_in? %>
     </section>
   </aside>
 
   <div class="col-md-8">
-
-    <%= render 'follow_page_form' if logged_in? %>
-    <br />
     <ul class="list-group">
       <% @questions.each do |question| %>
         <%= render partial: 'shared/item', locals: { question: question,  answer: @answer} %>

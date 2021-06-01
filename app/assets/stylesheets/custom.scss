@@ -56,6 +56,7 @@ html {
 }
 
 .navbar-brand {
+  font-size: 28px;
   a:hover {
     background-color: #000;
     color: #fff;
@@ -64,10 +65,13 @@ html {
 .navbar {
   .logo {
     margin-top: -3px;
+    image {
+      margin-right: 10px;
+    }
   }
 
   .input-group {
-    max-width: 350px;
+    max-width: 400px;
     margin-top: 15px;
   }
   li {
@@ -126,7 +130,6 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   bottom: 0;
   width: 100%;
   height: 70px; 
-
   a {
     text-decoration: none;
     color: #fff;
@@ -242,13 +245,21 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   padding: 16px;
   background-color: #181818;
   border-radius: 10px;
-  margin: 0.2em;
+  margin-bottom: 16px;
+}
+
+.background-common {
+  padding: 16px;
+  background-color: #181818;
+  border-radius: 10px;
+  margin: 0;
+  text-align: center;
 }
 
 
 .question-content {
   padding: 0 5px;
-  margin: 5px;
+  margin: 10px;
   color: rgb(216, 215, 215);
   font-size: 24px;
   overflow-wrap: break-word;
@@ -290,6 +301,12 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   .answer-right-col {
     margin-top: 0;
     padding-top: 0;
+    padding: 0;
+  }
+
+  .answer-icons-section {
+    padding-right: 4px;
+    padding-left: 8px;
   }
 }
 
@@ -366,8 +383,13 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     padding: 0;
     align-items: end;
     margin: 16px;
+    margin-bottom: 0px;
     height: 40px;
     margin-left: 8px;
+  }
+  .bottom-margin-0 {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
   }
   .row {
     margin-top: 0;
@@ -473,5 +495,32 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     font-size: 16px;
     text-decoration: none;
     margin: 10px;
+  }
+}
+
+.main-topic {
+  font-size: 16px;
+  text-decoration: none;
+  span {
+    font-size: 14px;
+  }
+}
+
+.topic-tag {
+  padding: 10px;
+  background-color: #353535;
+  margin: 5px;
+  justify-content: space-between;
+}
+
+.follow-form {
+  margin: 16px;
+}
+
+/* user list */
+
+.user {
+  a {
+    text-decoration: none;
   }
 }

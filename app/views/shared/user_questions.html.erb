@@ -1,18 +1,31 @@
-<div class="row justify-content-center">
-  <div class="col-10">
+<% provide(:title, title) %>
+
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="topic_info background-common">
+      <h1>
+        <%= title %>
+        <span class="badge bg-secondary">
+          <%= count %>
+        </span>
+      </h1>
+
+      <small class="text-muted"></small>
+    </section>
+  </aside>
+
+  <div class="col-md-8">
     <% if questions.blank? %>
       <div class="empty-questions">
         <%= empty_text%>
       </div>
-    <% else %>
-      <div class="suggested-questions">
-        <h3><%= title %></h3>
-        <ul class="list-group">
-          <% questions.each do | question | %>
-            <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
-          <% end %>
-        </ul>
-      </div>
+    <% else %> 
+      <ul class="list-group">
+        <% questions.each do | question | %>
+          <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 </div>

@@ -1,20 +1,20 @@
 <div class="question">
   <% user = question.user %>
-  <div class="row">
-    <div class="col-12 badge d-flex flex-row-reverse question-topic">
+  <div class="row justify-content-between">
+    <div class="col-9 question-content">
+      <%= question.content %>
+    </div>
+    <div class="col-2 badge d-flex flex-column align-items-end question-topic">
       <% question.topics.each do |topic| %>
         <%= link_to topic_path(topic) do %>
-          <span class="badge rounded-pill bg-info text-dark mx-1"><%= topic.name%></span>
+          <span class="badge rounded-pill bg-info text-dark m-1"><%= topic.name%></span>
         <% end %>
       <% end %>
     </div>
   </div>
-  <div class="question-content">
-    <%= question.content %>
-  </div>
 
   <div class="row justify-content-between question_metadata">
-    <div class="col-4">
+    <div class="col-4 p-1">
       <span class="timestamp question-timestamp">
         <%= time_ago_in_words(question.created_at) %> ago.
       </span>

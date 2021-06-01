@@ -17,7 +17,7 @@
         <%= time_ago_in_words(answer.created_at) %> ago.
       </span>
 
-      <div class="col-10 d-flex flex-row-reverse">
+      <div class="col-10 d-flex flex-row-reverse answer-icons-section">
         <% if current_user?(answer.user) %>
           <div class="delete_question">
             <%= link_to answer, method: :delete, data: { confirm: "You sure?" } do %>

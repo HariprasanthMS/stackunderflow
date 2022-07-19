@@ -28,4 +28,5 @@ production:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: sample_app_production
   username: sample_app
+  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>

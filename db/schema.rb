@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2021_05_27_094201) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "microposts", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
   create_table "question_topic_relations", force: :cascade do |t|
     t.integer "topic_id"
     t.integer "question_id"
@@ -74,4 +83,5 @@ ActiveRecord::Schema.define(version: 2021_05_27_094201) do
     t.index ["user_id", "answer_id"], name: "index_votes_on_user_id_and_answer_id", unique: true
   end
 
+  add_foreign_key "microposts", "users"
 end

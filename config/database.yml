@@ -20,13 +20,24 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see Rails configuration guide
+#   # https://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   database: sample_app_production
+#   username: sample_app
+#   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+#   password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+
 production:
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: sample_app_production
-  username: sample_app
-  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: stackunderflow_production
+  pool: 5
+  username: stackunderflow
+  password: <%= ENV['STACKUNDERFLOW_DATABASE_PASSWORD'] %>
+  secret_key_base: <%= ENV['STACKUNDERFLOW_SECRET_KEY_BASE'] %>
+  socket: /tmp/mysql.sock

@@ -26,7 +26,7 @@ Rails.application.configure do
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
-  config.secret_key_base = ENV['SECRET_KEY_BASE']
+  config.secret_key_base = ENV['STACKUNDERFLOW_SECRET_KEY_BASE']
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 

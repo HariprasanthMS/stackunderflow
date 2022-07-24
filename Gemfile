@@ -16,6 +16,10 @@ gem 'faker',      '2.11.0'
 gem 'will_paginate',           '3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap',  '5.0.1'
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
@@ -41,8 +45,8 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '1.2.3'
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+  gem 'mysql2', '~> 0.5.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

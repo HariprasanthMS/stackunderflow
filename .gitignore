@@ -35,6 +35,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+/config/secrets.yml
+.rbenv-vars
+
 /public/packs
 /public/packs-test
 /node_modules

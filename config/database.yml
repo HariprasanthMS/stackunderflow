@@ -41,3 +41,8 @@ production:
   password: <%= ENV['STACKUNDERFLOW_DATABASE_PASSWORD'] %>
   secret_key_base: <%= ENV['STACKUNDERFLOW_SECRET_KEY_BASE'] %>
   socket: /tmp/mysql.sock
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>

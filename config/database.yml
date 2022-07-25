@@ -40,5 +40,4 @@ production:
   host: <%= ENV['RDS_HOSTNAME'] %>
   port: <%= ENV['RDS_PORT'] %>
   secret_key_base: <%= ENV['STACKUNDERFLOW_SECRET_KEY_BASE'] %>
-  socket: /tmp/mysql.sock
 

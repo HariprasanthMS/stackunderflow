@@ -20,6 +20,8 @@ gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+gem 'redis', '~> 4.6'
+gem 'redis-namespace'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'

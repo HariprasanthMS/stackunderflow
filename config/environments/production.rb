@@ -120,10 +120,10 @@ Rails.application.configure do
 
   #AWS mailer
   config.action_mailer.smtp_settings = {
-    :address => ENV["SES_SMTP_SERVER"],
+    :address => ENV['SES_SMTP_SERVER'],
     :port => 587,
-    :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
-    :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
+    :user_name => ENV['SES_SMTP_USERNAME'], #Your SMTP user
+    :password => ENV['SES_SMTP_PASSWORD'], #Your SMTP password
     :authentication => :login,
     :enable_starttls_auto => true
   }

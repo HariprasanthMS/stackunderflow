@@ -68,4 +68,9 @@ class User < ApplicationRecord
   def following?(topic)
     topics.include?(topic)
   end
+
+  def send_mail
+    message = 'Your question has been answered. Kindly checkout the website for the answer'
+    ContactMailer.send_notification(name, email, message).deliver_later
+  end
 end

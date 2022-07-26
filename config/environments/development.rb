@@ -16,19 +16,22 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
+  
+  # if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  #   config.action_controller.perform_caching = true
+  #   config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
+  #   config.cache_store = :memory_store
+  #   config.public_file_server.headers = {
+  #     'Cache-Control' => "public, max-age=#{2.days.to_i}"
+  #   }
+  # else
+  #   config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
-  end
+  #   config.cache_store = :null_store
+  # end
+
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_CACHE_URL'] }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -36,13 +39,31 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    port: 3000
+  }
+
+  #AWS mailer
+  config.action_mailer.smtp_settings = {
+    :address => ENV["SES_SMTP_SERVER"],
+    :port => 587,
+    :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
+    :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []

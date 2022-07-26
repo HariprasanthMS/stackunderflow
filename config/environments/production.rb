@@ -117,4 +117,14 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  #AWS mailer
+  config.action_mailer.smtp_settings = {
+    :address => ENV["SES_SMTP_SERVER"],
+    :port => 587,
+    :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
+    :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
 end

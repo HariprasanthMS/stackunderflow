@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     if @answer.save
+      @answer.question.user.send_mail
       # flash[:success] = "Answer posted!"
       redirect_back(fallback_location: root_url)
     else

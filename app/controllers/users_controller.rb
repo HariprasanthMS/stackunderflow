@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    profile_image = params[:user][:profile_image]
+    @user.profile_image.attach(profile_image) if profile_image.present?
     if @user.save
       reset_session
       log_in @user
@@ -98,13 +100,18 @@ class UsersController < ApplicationController
   end
 
   def update
+    profile_image = params[:user][:profile_image]
+    # user = User.find_by(id: params[:id])
+    @user.profile_image.attach(profile_image) if profile_image.present?
     if @user.update(user_params)
       flash[:success] = "Profile updated"
+      #render json: @user.as_json(root: false, methods: :profile_image_url).except('password_digest')
       redirect_to @user
     else
+      #render json: @user.errors, status: :unprocessable_entity
       render 'edit'
     end
-  end
+end
 
   # def destroy
   #   log_out
@@ -115,7 +122,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email,
-                                   :password, :password_confirmation)
+                                   :password, :password_confirmation, :profile_image)
     end
 
     # Before filters

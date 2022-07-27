@@ -22,6 +22,9 @@ gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem 'redis', '~> 4.6'
 gem 'aws-sdk'
+gem 'aws-sdk-s3'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'image_processing'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'

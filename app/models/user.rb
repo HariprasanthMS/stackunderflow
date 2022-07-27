@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :user_topic_relations, dependent: :destroy
   has_many :topics, through: :user_topic_relations  
 
+  has_one_attached :profile_image
+
   attr_accessor :remember_token
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -72,5 +74,11 @@ class User < ApplicationRecord
   def send_mail
     message = 'Your question has been answered. Kindly checkout the website for the answer'
     ContactMailer.send_notification(name, email, message).deliver_later
+  end
+
+  def profile_image_url
+    if profile_image.attached?
+      profile_image.blob.service_url
+    end
   end
 end

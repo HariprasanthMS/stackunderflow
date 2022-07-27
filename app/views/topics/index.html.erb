@@ -5,7 +5,9 @@
     <section class="info-section background-common">
       <h1>
         <span class="badge bg-secondary">
-          <%= @topics.count %>
+          <% cache(@topics.count) do %>
+            <%= @topics.count %>
+          <% end %>
         </span>
       </h1>
       <h1>
@@ -23,15 +25,17 @@
     <% else %>
       <div class="section list-item card-group align-items-center">
         <% @topics.each do |topic| %>
-          <div class="topic-tag col-6 bd-10 text-center">
-            <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic">
-              <%= topic.name %>
-              <span class="badge bg-secondary">
-                <%= topic.questions.length %>
-              </span>
-            </a>
-            <%= render partial: 'follow_page_form', locals: {topic: topic} if logged_in? %>
-          </div>
+          <% cache(topic) do %>
+            <div class="topic-tag col-6 bd-10 text-center">
+              <a href="<%= topic_url(topic)%>" class="badge rounded-pill bg-info text-dark main-topic">
+                <%= topic.name %>
+                <span class="badge bg-secondary">
+                  <%= topic.questions.length %>
+                </span>
+              </a>
+              <%= render partial: 'follow_page_form', locals: {topic: topic} if logged_in? %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>

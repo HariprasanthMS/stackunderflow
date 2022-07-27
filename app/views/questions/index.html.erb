@@ -5,7 +5,9 @@
     <section class="topic_info background-common">
       <h1>
         <span class="badge bg-secondary">
-          <%= @questions.count %>
+          <% cache(@questions.count) do %>
+            <%= @questions.count %>
+          <% end %>
         </span>
       </h1>
       <h1>
@@ -23,7 +25,9 @@
     <% else %> 
       <ul class="list-group">
         <% @questions.each do | question | %>
-          <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+          <% cache(question) do %>
+            <%= render partial: 'shared/item', locals: { question: question, answer: @answer } %>
+          <% end %>
         <% end %>
       </ul>
     <% end %>

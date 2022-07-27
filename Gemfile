@@ -25,6 +25,7 @@ gem 'aws-sdk'
 gem 'aws-sdk-s3'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'image_processing'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'

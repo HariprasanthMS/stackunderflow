@@ -38,6 +38,7 @@ vendor/bundle
 
 /config/secrets.yml
 .rbenv-vars
+.env
 
 /public/packs
 /public/packs-test

@@ -2,11 +2,10 @@ module UsersHelper
   def gravatar_for(user, size: 50)
     if user.profile_image.attached?
         begin
-          raise
-            # block where exception raise
-            processed_key = user.profile_image.variant(resize: "#{size}x#{size}!").processed.key
-            full_cdn_url = "#{ENV['AWS_CLOUD_FRONT_URL']}/#{processed_key}"
-            image_tag(full_cdn_url, size: size, class: "image")
+          # block where exception raise
+          processed_key = user.profile_image.variant(resize: "#{size}x#{size}!").processed.key
+          full_cdn_url = "#{ENV['AWS_CLOUD_FRONT_URL']}/#{processed_key}"
+          image_tag(full_cdn_url, size: size, class: "image")
           rescue
             get_default_gravatar(user, size: size)
         end

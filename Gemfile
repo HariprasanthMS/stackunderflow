@@ -26,6 +26,7 @@ gem 'aws-sdk-s3'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'image_processing'
 gem 'dotenv-rails'
+gem 'listen'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
@@ -34,7 +35,7 @@ end
 
 group :development do
   gem 'web-console',           '4.1.0'
-  gem 'listen',                '3.4.1'
+#  gem 'listen',                '3.4.1'
   gem 'spring',                '2.1.1'
   gem 'spring-watcher-listen', '2.0.1'
 end

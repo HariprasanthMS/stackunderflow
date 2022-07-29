@@ -11,7 +11,7 @@
       <ul class="navbar-nav mr-auto">
         <%= form_tag(search_url, :method => "get") do %> 
           <div class="form-input input-group">
-            <%= search_field_tag :search, params[:search], placeholder: "Enter keywords", class: "form-control" %>
+            <%= search_field_tag :search, params[:search], placeholder: "Search question", class: "form-control" %>
             <div class="input-group-append">
               <%= button_tag "Search", :class => 'btn btn-outline-warning',:name => nil%> 
             </div>

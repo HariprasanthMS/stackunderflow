@@ -53,6 +53,7 @@ end
 group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
   gem 'mysql2', '~> 0.5.2'
+  gem 'listen', '3.4.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
